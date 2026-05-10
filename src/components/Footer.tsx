@@ -4,7 +4,9 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const VITE_SERVER_URL = process.env.VITE_SERVER_URL;
+const VITE_API_URL = import.meta.env.VITE_API_URL;
+
+console.log("VITE_API_URL", VITE_API_URL);
 
 function Footer() {
   const [email, setEmail] = useState("");
@@ -16,7 +18,7 @@ function Footer() {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${VITE_SERVER_URL}/api/newsletter/subscribe`,
+        `${VITE_API_URL}/api/newsletter/subscribe`,
         { email },
       );
       toast.success(response.data.message);

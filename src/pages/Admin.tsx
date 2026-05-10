@@ -4,7 +4,7 @@ import Layout from "./Layout";
 import "../styles/Admin.css";
 import { toast } from "react-toastify";
 
-const VITE_SERVER_URL = process.env.VITE_SERVER_URL;
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 const Admin = () => {
   const [contacts, setContacts] = useState([]);
@@ -26,17 +26,17 @@ const Admin = () => {
   const fetchData = async () => {
     try {
       const contactsRes = await axios.get(
-        `${VITE_SERVER_URL}/api/admin/contacts`,
+        `${VITE_API_URL}/api/admin/contacts`,
         config,
       );
 
       const usersRes = await axios.get(
-        `${VITE_SERVER_URL}/api/admin/users`,
+        `${VITE_API_URL}/api/admin/users`,
         config,
       );
 
       const quotesRes = await axios.get(
-        `${VITE_SERVER_URL}/api/admin/quotes`,
+        `${VITE_API_URL}/api/admin/quotes`,
         config,
       );
 
@@ -50,7 +50,7 @@ const Admin = () => {
 
   const deleteContact = async (id: string) => {
     const res = await axios.delete(
-      `${VITE_SERVER_URL}/api/admin/contacts/${id}`,
+      `${VITE_API_URL}/api/admin/contacts/${id}`,
       config,
     );
 

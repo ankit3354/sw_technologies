@@ -6,7 +6,7 @@ import Layout from "./Layout";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../styles/Auth.css";
 
-const VITE_SERVER_URL = process.env.VITE_SERVER_URL;
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const Login = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `${VITE_SERVER_URL}/api/auth/login`,
+        `${VITE_API_URL}/api/auth/login`,
         formData,
       );
 

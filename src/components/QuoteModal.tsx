@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "../styles/QuoteModal.css";
 
-const VITE_SERVER_URL = process.env.VITE_SERVER_URL;
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 interface QuoteModalProps {
   closeModal: () => void;
@@ -39,10 +39,7 @@ const QuoteModal = ({ closeModal }: QuoteModalProps) => {
     try {
       setLoading(true);
 
-      const response = await axios.post(
-        `${VITE_SERVER_URL}/api/quote`,
-        formData,
-      );
+      const response = await axios.post(`${VITE_API_URL}/api/quote`, formData);
 
       toast.success(response.data.message);
 
