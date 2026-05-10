@@ -25,3 +25,12 @@ dist-ssr
 
 *.env 
 .env
+
+
+node_modules
+dist
+build
+.env
+.DS_Store
+.vscode
+.idea
