@@ -1,0 +1,56 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.quote-modal {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.quote-modal h2 {
+  margin-bottom: 25px;
+}
+
+.quote-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quote-modal input,
+.quote-modal select,
+.quote-modal textarea {
+  padding: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+}
+
+.quote-modal button {
+  padding: 14px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none !important;
+  color: black !important;
+  font-size: 28px;
+  cursor: pointer;
+}

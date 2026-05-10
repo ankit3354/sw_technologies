@@ -51,7 +51,7 @@
 /* Sections */
 
 section {
-  padding: 80px 8%;
+  padding: 0px 8%;
 }
 
 .section-title {
@@ -92,4 +92,17 @@ section {
 
 .card p {
   color: #475569;
+}
+
+.hero {
+  padding: 80px 8%;
+}
+.why_us {
+  padding: 80px 8%;
+}
+.services {
+  padding: 80px 8%;
+}
+.testimonials {
+  padding: 80px 8%;
 }

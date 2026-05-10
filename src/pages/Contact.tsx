@@ -1,6 +1,10 @@
 import { useState } from "react";
 import "../styles/Contact.css";
 import Layout from "./Layout";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+const VITE_SERVER_URL = process.env.VITE_SERVER_URL;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +14,7 @@ const Contact = () => {
     subject: "",
     message: "",
   });
-
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<any>({});
 
   const handleChange = (
@@ -32,15 +36,12 @@ const Contact = () => {
     if (!formData.email.includes("@")) {
       newErrors.email = "Valid email required";
     }
-
     if (formData.phone.length < 10) {
       newErrors.phone = "Valid phone number required";
     }
-
     if (!formData.subject.trim()) {
       newErrors.subject = "Subject is required";
     }
-
     if (!formData.message.trim()) {
       newErrors.message = "Message is required";
     }
@@ -50,26 +51,36 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (validate()) {
-      alert("Form Submitted Successfully");
+      try {
+        setLoading(true);
+        const response = await axios.post(
+          `${VITE_SERVER_URL}/api/contact`,
+          formData,
+        );
+        toast.success(response.data.message);
 
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
-      });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } catch (error: any) {
+        toast.error(error.response?.data?.message || "Something went wrong");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
   return (
     <Layout>
       {/* Banner */}
-
       <section className="contact-banner">
         <h1>Contact Us</h1>
 
@@ -93,7 +104,6 @@ const Contact = () => {
               onChange={handleChange}
             />
             {errors.name && <span>{errors.name}</span>}
-
             <input
               type="email"
               name="email"
@@ -102,7 +112,6 @@ const Contact = () => {
               onChange={handleChange}
             />
             {errors.email && <span>{errors.email}</span>}
-
             <input
               type="text"
               name="phone"
@@ -111,7 +120,6 @@ const Contact = () => {
               onChange={handleChange}
             />
             {errors.phone && <span>{errors.phone}</span>}
-
             <input
               type="text"
               name="subject"
@@ -120,7 +128,6 @@ const Contact = () => {
               onChange={handleChange}
             />
             {errors.subject && <span>{errors.subject}</span>}
-
             <textarea
               name="message"
               placeholder="Your Message"
@@ -128,10 +135,10 @@ const Contact = () => {
               value={formData.message}
               onChange={handleChange}
             ></textarea>
-
             {errors.message && <span>{errors.message}</span>}
-
-            <button type="submit">Send Message</button>
+            <button type="submit" disabled={loading}>
+              {loading ? <div className="spinner"></div> : "Send Message"}
+            </button>{" "}
           </form>
         </div>
 

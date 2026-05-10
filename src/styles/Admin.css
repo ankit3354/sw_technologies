@@ -1,0 +1,28 @@
+.admin-page {
+  padding: 80px 8%;
+}
+
+.admin-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 50px;
+}
+
+.admin-page th,
+.admin-page td {
+  border: 1px solid #ddd;
+  padding: 12px;
+}
+
+.admin-page th {
+  background: #0f172a;
+  color: white;
+}
+
+.admin-page button {
+  padding: 8px 14px;
+  border: none;
+  background: red;
+  color: white;
+  cursor: pointer;
+}

@@ -4,8 +4,11 @@ import TestimonialCard from "../components/TestimonialCard";
 import Button from "../components/Button";
 import Layout from "./Layout";
 import "../styles/Home.css";
+import { useState } from "react";
+import QuoteModal from "../components/QuoteModal";
 
 const Home = () => {
+  const [openModal, setOpenModal] = useState(false);
   return (
     <Layout>
       {/* Hero Section */}
@@ -19,7 +22,7 @@ const Home = () => {
           </p>
 
           <div className="hero-buttons">
-            <Button text="Get a Free Quote" />
+            <button onClick={() => setOpenModal(true)}>Get a Free Quote</button>
 
             <Button text="View Our Services" secondary={true} />
           </div>
@@ -58,7 +61,7 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="why-us">
+      <section className="why_us">
         <h2 className="section-title">Why Choose Us</h2>
 
         <div className="card-container">
@@ -100,6 +103,8 @@ const Home = () => {
           />
         </div>
       </section>
+
+      {openModal && <QuoteModal closeModal={() => setOpenModal(false)} />}
     </Layout>
   );
 };
