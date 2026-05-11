@@ -64,7 +64,6 @@ const Admin = () => {
       <div className="admin-page">
         <h1>Admin Dashboard</h1>
         <h2>Contacts</h2>
-
         <table>
           <thead>
             <tr>
@@ -74,18 +73,22 @@ const Admin = () => {
             </tr>
           </thead>
           <tbody>
-            {contacts.map((item: any) => (
-              <tr key={item._id}>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
+            {contacts.length === 0 ? (
+              <div>Loading.....</div>
+            ) : (
+              contacts.map((item: any) => (
+                <tr key={item._id}>
+                  <td>{item.name}</td>
+                  <td>{item.email}</td>
 
-                <td>
-                  <button onClick={() => deleteContact(item._id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  <td>
+                    <button onClick={() => deleteContact(item._id)}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
 
@@ -99,12 +102,16 @@ const Admin = () => {
           </thead>
 
           <tbody>
-            {users.map((item: any) => (
-              <tr key={item._id}>
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-              </tr>
-            ))}
+            {users.length === 0 ? (
+              <div>loading.....</div>
+            ) : (
+              users.map((item: any) => (
+                <tr key={item._id}>
+                  <td>{item.name}</td>
+                  <td>{item.email}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
 
@@ -119,13 +126,17 @@ const Admin = () => {
           </thead>
 
           <tbody>
-            {quotes.map((item: any) => (
-              <tr key={item._id}>
-                <td>{item.name}</td>
-                <td>{item.serviceRequired}</td>
-                <td>{item.budget}</td>
-              </tr>
-            ))}
+            {quotes.length === 0 ? (
+              <div>loading.....</div>
+            ) : (
+              quotes.map((item: any) => (
+                <tr key={item._id}>
+                  <td>{item.name}</td>
+                  <td>{item.serviceRequired}</td>
+                  <td>{item.budget}</td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
